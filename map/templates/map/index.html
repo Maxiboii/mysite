@@ -29,14 +29,14 @@
     th {
         background-color: rgb(238, 238, 238);
         color: rgb(51, 51, 51);
-        font-size: 19px;
+        font-size: 18px;
         font-weight: 700;
         font-family: Roboto, sans-serif;
         background-position: initial initial;
         background-repeat: initial initial;
     }
     td {
-        font-size: 19px;
+        font-size: 18px;
     }
     td span {
         font-family: Roboto, sans-serif;
@@ -47,9 +47,9 @@
 </head>
 {% block content %}
 <body>
-    <div>
+    <div class="svg-container">
         <span id="tooltiptext">Region name</span>
-        <svg width="834" height="440">
+        <svg viewBox="0 0 700 410">
             {% for region in map %}
             <path
                 comment="{{ region.region.region }}"
