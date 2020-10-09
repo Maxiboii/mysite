@@ -3,8 +3,12 @@ from . import views
 
 app_name='map'
 urlpatterns = [
-    path('', views.MapView.as_view()),
-    # path('', views.MapListView.as_view(), name='all'),
+    # path('', views.MapView.as_view()),
+    path('', views.MapView.as_view(), name='map'),
+    path('comment',
+        views.CommentCreateView.as_view(), name='map_comment_create'),
+    path('comment/<int:pk>/delete',
+        views.CommentDeleteView.as_view(success_url=reverse_lazy('map')), name='map_comment_delete'),
     # path('ad/<int:pk>', views.AdDetailView.as_view(), name='ad_detail'),
     # path('ad/create',
     #     views.AdCreateView.as_view(success_url=reverse_lazy('ads:all')), name='ad_create'),
