@@ -4,11 +4,14 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+<div class="main">
     <div class="container" style="max-width: 800px;">
         <form method="POST" class="form-group">
             {% csrf_token %}
             {{form|crispy}}
+            <p>Already have an account? <a class="badge badge-info" href="/login">Login</a></p>
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>
+</div>
 {% endblock %}

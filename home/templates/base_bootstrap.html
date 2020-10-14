@@ -37,7 +37,9 @@
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
     <style>
     .main {
-        margin-top: 100px;
+        position: relative;
+        top:100px;
+        margin-bottom: 100px;
     }
     </style>
 
@@ -48,6 +50,6 @@
 <body>
 {% block navbar %}{% endblock %}
 {% block content %}{% endblock %}
-{% block footer %} {% endblock %}
+{% block footer %}{% endblock %}
 </body>
 </html>
