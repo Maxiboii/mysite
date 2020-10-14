@@ -11,7 +11,7 @@ from django.contrib.humanize.templatetags.humanize import naturaltime
 
 class MapView(OwnerDetailView):
     model = Map
-    template_name = "map/index.html"
+    template_name = "map/map.html"
     def get(self, request) :
         comments = MapComment.objects.all().order_by('-updated_at')
         comment_form = CommentForm()

@@ -1,0 +1,20 @@
+{% extends "base_menu.html" %}
+
+
+{% block title %} Login {% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if form.errors %}
+  <p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+    <div class="container" style="width: 400px;">
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <p>Don't have an account? <a class="badge badge-info" href="/register">Create one</a></p>
+            <input type="submit" class="btn btn-primary" value="Login" />
+            <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+    </div>
+{% endblock %}

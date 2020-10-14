@@ -1,0 +1,185 @@
+{% extends "base_menu.html" %}
+{% load humanize %}
+
+{% block title %}COVID-19 В УКРАЇНІ - Infogram{% endblock %}
+
+{% block head %}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, Chrome=1">
+
+<!-- fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,400i,500i,700i%7CRaleway:400,500,600,700,400i,500i,600i,700i&amp;subset=latin,latin-ext,cyrillic" media="all">
+
+<style>
+#tooltiptext {
+  visibility: hidden;
+  width: auto;
+  background-color: rgba(100,100,100,0.8);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+  position: absolute;
+  left: 100px;
+  top: 200px;
+  z-index: 1;
+}
+
+th {
+    background-color: rgb(238, 238, 238);
+    color: rgb(51, 51, 51);
+    font-size: 18px;
+    font-weight: 700;
+    font-family: Roboto, sans-serif;
+    background-position: initial initial;
+    background-repeat: initial initial;
+}
+td {
+    font-size: 18px;
+}
+td span {
+    font-family: Roboto, sans-serif;
+}
+.data {
+    width: 95%;
+    margin: auto;
+}
+.text {
+    overflow-wrap: break-word;
+}
+@media screen and (max-width: 767px) {
+    .row th, td {
+        font-size: 16px;
+    }
+}
+</style>
+
+{% endblock %}
+
+{% block content %}
+<div class="main">
+    <div class="svg-container">
+        <span id="tooltiptext">Region name</span>
+        <svg viewBox="0 0 700 410">
+            {% for region in map %}
+            <path
+                comment="{{ region.region.region }}"
+                stroke="#ffffff"
+                stroke-opacity="NaN"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="rgb(249, {{ region.cases.color }}, {{ region.cases.color }})"
+                d="{{ region.data }}"
+            ></path>
+            {% endfor %}
+        </svg>
+    </div>
+
+
+    <div class="data">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-xs-auto col-lg-10">
+                <h2>Випадків сьогодні: <b>{{ util.1.value }}</b></h2>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span>Область</span>
+                            </th>
+                            <th>
+                                <span>Населення</span>
+                            </th>
+                            <th>
+                                <span>Виявлено</span>
+                            </th>
+                            <th>
+                                <span>Випадків на {{ util.2.value }} людей</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in cases %}
+                        <tr>
+                            <td><span>{{ i.region.region }}</td>
+                            <td><span>{{ i.region.population }}</td>
+                            <td><span>{{ i.cases }}</td>
+                            <td><span>{{ i.indx }}</td>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <h5 class="text-right">Станом на <b>{{ util.0.value }}</b></h5>
+                <hr/>
+            </div>
+        <div class="col"></div>
+        </div>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col"></div>
+                    <div class="col-md-12 col-lg-8">
+                        <div class="comments">
+                            {% if user.is_authenticated %}
+                                <br clear="all"/>
+                                <p>
+                                    {% load crispy_forms_tags %}
+                                    <form method="post" action="{% url 'map:map_comment_create' %}">
+                                        {% csrf_token %}
+                                        {{ comment_form|crispy }}
+                                        <input class="btn btn-primary" type="submit" value="Submit">
+                                    </form>
+                                </p>
+                            {% else %}
+                                <h4 class="text-right"><a class="badge badge-primary" href="../accounts/login?next={% url 'map:map' %}">Login</a> to comment</h4>
+                            {% endif %}
+                            <div class="page-header">
+                                <h4>{{ n }} Comments</h4>
+                            </div>
+                            {% for comment in comments %}
+                                <p>
+                                    <h4 class="media-heading user_name">{{ comment.owner }}</h4>
+                                    <div class ="text">
+                                        {{ comment.text }}
+                                        {% if user == comment.owner %}
+                                        <a href="{% url 'map:map_comment_delete' comment.id %}"><i class="fa fa-trash"></i></a>
+                                        {% endif %}
+                                    </div>
+                                    <p class="text-right"><small>{{ comment.updated_at|naturaltime }}</small></p>
+                                </p>
+                                <hr/>
+                            {% endfor %}
+                            </div>
+                        </div>
+                <div class="col"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+$( 'path' ).on( "click", function( event ) {
+    $( "#tooltiptext" ).css( 'left', event.pageX);
+    $( "#tooltiptext" ).css( 'top', event.pageY+10);
+    $( '#tooltiptext' ).css( "visibility", 'visible' );
+    $( '#tooltiptext' ).text( $( this ).attr('comment') );
+});
+$( "path" ).hover(
+    function() {
+    color = $( this ).attr( "fill");
+    var region = $( this ).attr( "id" );
+    $( this ).attr( "fill", "rgb(170,170,170)");
+    $( this ).attr( "stroke", "#666");
+}, function() {
+    $( this ).attr( "stroke", "#fff");
+    $( this ).attr( "fill", color);
+    $( '#tooltiptext' ).css( "visibility", 'hidden' );
+  });
+</script>
+
+
+
+{% endblock %}

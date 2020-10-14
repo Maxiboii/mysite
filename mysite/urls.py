@@ -20,15 +20,28 @@ from django.conf import settings
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 from django.views.static import serve
+from . import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from register import views as v
+from bot import views as bot_v
+
+
+admin.autodiscover()
 
 urlpatterns = [
     path('', include('home.urls')),
-    path('ads/', include('ads.urls')),
+    # path('ads/', include('ads.urls')),
     path('map/', include('map.urls')),
+    path('bot/', include('bot.urls')),
     path('admin/', admin.site.urls),  # Keep
+    path('register/', v.register, name="register"),
     path('accounts/', include('django.contrib.auth.urls')),  # Keep
-    url(r'^oauth/', include('social_django.urls', namespace='social')),  # Keep
+    # url(r'^oauth/', include('social_django.urls', namespace='social')),  # Keep
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Serve the static HTML
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -50,15 +63,15 @@ urlpatterns += [
 ]
 
 # Switch to social login if it is configured - Keep for later
-try:
-    from . import github_settings
-    social_login = 'registration/login_social.html'
-    urlpatterns.insert(0,
-                       path('accounts/login/', auth_views.LoginView.as_view(template_name=social_login))
-                       )
-    print('Using', social_login, 'as the login template')
-except:
-    print('Using registration/login.html as the login template')
+# try:
+#     from . import github_settings
+#     social_login = 'registration/login_social.html'
+#     urlpatterns.insert(0,
+#                        path('accounts/login/', auth_views.LoginView.as_view(template_name=social_login))
+#                        )
+#     print('Using', social_login, 'as the login template')
+# except:
+#     print('Using registration/login.html as the login template')
 
 # References
 
