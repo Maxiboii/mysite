@@ -1,36 +1,98 @@
 {% extends "base_bootstrap.html" %}
 {% block navbar %}
 {% load app_tags %}
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <div class="container-fluid">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="/">{{ settings.APP_NAME }}</a>
-    </div>
-    <ul class="navbar-nav">
-      {% url 'ads' as ads %}
-      <li class="nav-item"{% if request.get_full_path == ads %}class="active"{% endif %}>
-          <a class="nav-link" href="{% url 'ads:all' %}">Ads</a></li>
-      {% url 'map' as map %}
-      <li class="nav-item"{% if request.get_full_path == map %}class="active"{% endif %}>
-          <a class="nav-link" href="{% url 'map:map' %}">Map</a></li>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-3" id="mainNav">
+    <a class="navbar-brand" href="/">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#about">Bio</a></li>
+        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#services">What I do</a></li>
+        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#portfolio">Music</a></li>
+        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#contact">Contact</a></li>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Projects
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'map:map' %}">Map</a>
+          <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'bot:bot' %}">Bot</a>
+        </div>
+      </li>
     </ul>
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="navbar-nav">
         {% if user.is_authenticated %}
-        <li class="navbar-brand">{{ user }}</li>
-        <li>
-            <a href="#">
-        <!-- <li class="dropdown">
-            <a href="#" data-toggle="dropdown" class="dropdown-toggle"> -->
-                <img style="width: 25px;" src="{{ user|gravatar:60 }}"/><b class="caret"></b>
-            </a>
-        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}?next={% url 'ads:all' %}">Logout</a></li>
+        <li class="nav-item">
+            <a class="navbar-brand">{{ user }}</a>
         </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img style="width: 45px;" src="{{ user|gravatar }}"/>
+            </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#"><b>Profile</b></a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+        </div>
+      </li>
         {% else %}
         <li class="nav-item">
-        <a class="nav-link" href="{% url 'login' %}?next={% url 'home' %}">Login</a>
+            <a class="nav-link" href="{% url 'register' %}?next={% url 'home' %}">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}?next={{ request.path }}">Login</a>
         </li>
         {% endif %}
     </ul>
   </div>
 </nav>
+
+<!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div id="navbarResponsive">
+            <div class="collapse navbar-collapse" >
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Home</a>
+                </div>
+                <ul class="navbar-nav ml-auto my-2 my-lg-0">
+
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</nav> -->
+
+
+
+
+
+<!-- <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/">{{ settings.APP_NAME }}</a>
+    </div>
+    <ul class="navbar-nav">
+
+    </ul>
+
+  </div>
+</nav> -->
 {% endblock %}
