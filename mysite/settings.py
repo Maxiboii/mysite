@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'social_django',
     'home.apps.HomeConfig',
     'register.apps.RegisterConfig',
-    # 'ads.apps.AdsConfig',
     'map.apps.MapConfig',
     'bot.apps.BotConfig',
     # 'unesco.apps.UnescoConfig',  # Add

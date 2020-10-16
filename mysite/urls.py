@@ -31,7 +31,6 @@ admin.autodiscover()
 
 urlpatterns = [
     path('', include('home.urls')),
-    # path('ads/', include('ads.urls')),
     path('map/', include('map.urls')),
     path('bot/', include('bot.urls')),
     path('admin/', admin.site.urls),  # Keep

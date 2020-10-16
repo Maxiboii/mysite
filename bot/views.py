@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
-from ads.owner import OwnerDetailView, OwnerDeleteView
+from bot.owner import OwnerDetailView, OwnerDeleteView
 from django.conf import settings
 from bot.models import BotComment
 from map.forms import CommentForm

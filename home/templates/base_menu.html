@@ -11,7 +11,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#about">Bio</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#services">What I do</a></li>
+        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#portfolio">Portfolio</a></li>
         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#contact">Contact</a></li>
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -34,8 +34,8 @@
                 <img style="width: 45px;" src="{{ user|gravatar }}"/>
             </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#"><b>Profile</b></a>
-          <div class="dropdown-divider"></div>
+          <!-- <a class="dropdown-item" href="#"><b>Profile</b></a> -->
+          <!-- <div class="dropdown-divider"></div> -->
           <a class="dropdown-item" href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
         </div>
       </li>
