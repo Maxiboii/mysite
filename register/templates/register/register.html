@@ -9,7 +9,7 @@
         <form method="POST" class="form-group">
             {% csrf_token %}
             {{form|crispy}}
-            <p>Already have an account? <a class="badge badge-info" href="/login">Login</a></p>
+            <p>Already have an account? <a class="badge badge-info" href="../accounts/login">Login</a></p>
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>

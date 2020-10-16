@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
-from ads.owner import OwnerDetailView, OwnerDeleteView
+from bot.owner import OwnerDetailView, OwnerDeleteView
 from django.conf import settings
 from map.models import Population, CasesToday, Utility, Map, MapComment
 from map.forms import CommentForm
@@ -12,7 +12,7 @@ from django.contrib.humanize.templatetags.humanize import naturaltime
 class MapView(OwnerDetailView):
     model = Map
     template_name = "map/map.html"
-    def get(self, request) :
+    def get(self, request):
         comments = MapComment.objects.all().order_by('-updated_at')
         comment_form = CommentForm()
         population = Population.objects.all()
