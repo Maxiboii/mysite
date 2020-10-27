@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Used for a default title
@@ -40,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
-    # Extensions - installed with pip3 / requirements.txt
     'django_extensions',
     'crispy_forms',
     'rest_framework',
@@ -49,11 +47,10 @@ INSTALLED_APPS = [
     'register.apps.RegisterConfig',
     'map.apps.MapConfig',
     'bot.apps.BotConfig',
-    # 'unesco.apps.UnescoConfig',  # Add
 ]
 
-# When we get to crispy forms :)
-CRISPY_TEMPLATE_PACK = 'bootstrap4'  # Add
+# Crispy forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -79,9 +76,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'home.context_processors.settings',      # Add
-                'social_django.context_processors.backends',  # Add
-                'social_django.context_processors.login_redirect', # Add
+                'home.context_processors.settings',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
