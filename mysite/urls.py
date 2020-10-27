@@ -33,10 +33,10 @@ urlpatterns = [
     path('', include('home.urls')),
     path('map/', include('map.urls')),
     path('bot/', include('bot.urls')),
-    path('admin/', admin.site.urls),  # Keep
+    path('admin/', admin.site.urls),
     path('register/', v.register, name="register"),
-    path('accounts/', include('django.contrib.auth.urls')),  # Keep
-    # url(r'^oauth/', include('social_django.urls', namespace='social')),  # Keep
+    path('accounts/', include('django.contrib.auth.urls')),
+    # url(r'^oauth/', include('social_django.urls', namespace='social')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
@@ -52,7 +52,7 @@ urlpatterns += [
         ),
 ]
 
-# Serve the favicon - Keep for later
+# Favicon
 urlpatterns += [
     path('favicon.ico', serve, {
             'path': 'favicon.ico',
@@ -61,7 +61,7 @@ urlpatterns += [
     ),
 ]
 
-# Switch to social login if it is configured - Keep for later
+# Switch to social login if it is configured
 # try:
 #     from . import github_settings
 #     social_login = 'registration/login_social.html'
