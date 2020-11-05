@@ -33,6 +33,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path('map/', include('map.urls')),
     path('bot/', include('bot.urls')),
+    path('panel/', include('cosmic.urls')),
     path('admin/', admin.site.urls),
     path('register/', v.register, name="register"),
     path('accounts/', include('django.contrib.auth.urls')),
