@@ -48,3 +48,19 @@ body {
 .footer {
     background-color: #000;
 }
+@media screen and (max-width: 1100px) {
+    .main, .laser, th {
+        font-size: 14px !important;
+    }
+    h1, h2, h3 {
+        font-size: 22px !important;
+    }
+}
+@media screen and (max-width: 800px) {
+    .main, .laser, th {
+        font-size: 10px !important;
+    }
+    h1, h2, h3 {
+        font-size: 16px !important;
+    }
+}
