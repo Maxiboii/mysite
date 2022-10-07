@@ -4,6 +4,7 @@ from django.conf import settings
 
 # Create your views here.
 
+
 class HomeView(View):
     def get(self, request):
         print(request.get_host())

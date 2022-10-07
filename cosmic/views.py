@@ -2,11 +2,9 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 from cosmic.owner import OwnerDetailView, OwnerDeleteView
-from django.conf import settings
 from cosmic.models import PanelComment
 from map.forms import CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.humanize.templatetags.humanize import naturaltime
 
 
 # Create your views here.
