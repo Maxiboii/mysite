@@ -13,18 +13,19 @@
         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#about">Bio</a></li>
         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#portfolio">Portfolio</a></li>
         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/data_project">`project_name` Blog</a></li>
         <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Projects
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'map:map' %}">Map</a>
-          <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{% url 'bot:bot' %}">Bot</a>
-          <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{% url 'cosmic:panel' %}">Cosmic Activity Panel</a>
-        </div>
-      </li>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Projects
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'map:map' %}">Map</a>
+              <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'bot:bot' %}">Bot</a>
+              <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'cosmic:panel' %}">Cosmic Activity Panel</a>
+            </div>
+        </li>
     </ul>
     <ul class="navbar-nav">
         {% if user.is_authenticated %}
