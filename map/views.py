@@ -2,11 +2,9 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 from bot.owner import OwnerDetailView, OwnerDeleteView
-from django.conf import settings
 from map.models import Population, CasesToday, Utility, Map, MapComment
 from map.forms import CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.humanize.templatetags.humanize import naturaltime
 
 
 class MapView(OwnerDetailView):
