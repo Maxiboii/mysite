@@ -1,0 +1,12 @@
+{% extends "base_footer.html" %}
+
+
+{% block content %}
+<section class="page-section bg-primary" id="about">
+    <div class="container">
+        <h2>{{ post.title }}</h2>
+        <h4>{{ post.author }}</h4>
+        <p>{{ post.overview }}</p>
+    </div>
+</section>
+{% endblock %}
