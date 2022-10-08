@@ -1,0 +1,17 @@
+{% extends "base_footer.html" %}
+
+
+{% block content %}
+<section class="page-section bg-primary" id="about">
+    <div class="container">
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <a href="/blog/post/{{ post.id }}"><h6>{{ post.title }} </h6></a><i>{{ post.author }}</i>
+                    <p>{{ post.overview }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}

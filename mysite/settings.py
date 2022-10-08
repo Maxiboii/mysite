@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'map.apps.MapConfig',
     'bot.apps.BotConfig',
     'cosmic.apps.CosmicConfig',
+    'blog.apps.BlogConfig',
 ]
 
 # Crispy forms
