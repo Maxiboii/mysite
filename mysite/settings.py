@@ -45,9 +45,6 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'register.apps.RegisterConfig',
     'projects.apps.ProjectsConfig',
-    # 'map.apps.MapConfig',
-    # 'bot.apps.BotConfig',
-    # 'cosmic.apps.CosmicConfig',
     'blog.apps.BlogConfig',
 ]
 

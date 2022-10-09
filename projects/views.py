@@ -92,7 +92,7 @@ class CommentCreateView(LoginRequiredMixin, View):
 
 
 class CommentDeleteView(OwnerDeleteView):
-    template_name = 'home/comment_delete.html'
+    template_name = 'comment/comment_delete.html'
     model = None
     redirect_url = None
 
