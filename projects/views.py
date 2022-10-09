@@ -10,75 +10,61 @@ from projects.forms import CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class MapView(View):
-    model = Map
-    template_name = "map/map.html"
+class CommonView(View):
+    model = None
+    template_name = None
+    project_name = None
 
-    def get(self, request, *args, **kwargs):
-        comments = MapComment.objects.all().order_by('-updated_at')
+    def _get_context(self):
+        comments = self.model.objects.all().order_by('-updated_at')
         comment_form = CommentForm()
-        population = Population.objects.all()
-        casestoday = CasesToday.objects.all()
-        util = Utility.objects.all()
-        map = Map.objects.all()
         context = {
             'comments': comments,
             'comment_count': len(comments),
             'comment_form': comment_form,
-            'population': population,
-            'cases': casestoday,
-            'util': util,
-            'map': map,
-            'comment_create_link': 'projects:map_comment_create',
-            'comment_delete_link': 'projects:map_comment_delete',
-            'login_redirect_link': 'projects:map',
+            'comment_create_link': f'projects:{self.project_name}_comment_create',
+            'comment_delete_link': f'projects:{self.project_name}_comment_delete',
+            'login_redirect_link': f'projects:{self.project_name}',
         }
+        return context
+
+    def get(self, response):
+        return render(response, self.template_name, self._get_context())
+
+
+class MapView(CommonView):
+    model = MapComment
+    template_name = 'map/map.html'
+    project_name = 'map'
+
+    def get(self, request):
+        population = Population.objects.all()
+        cases_today = CasesToday.objects.all()
+        util = Utility.objects.all()
+        _map = Map.objects.all()
+
+        context = self._get_context()
+        context.update({'population': population, 'cases': cases_today, 'util': util, 'map': _map})
+
         return render(request, self.template_name, context)
 
 
-class BotView(View):
-    def get(self, response):
-        comments = BotComment.objects.all().order_by('-updated_at')
-        comment_form = CommentForm()
-        context = {
-            'comments': comments,
-            'comment_count': len(comments),
-            'comment_form': comment_form,
-            'comment_create_link': 'projects:bot_comment_create',
-            'comment_delete_link': 'projects:bot_comment_delete',
-            'login_redirect_link': 'projects:bot',
-        }
-        return render(response, 'bot/bot.html', context)
+class BotView(CommonView):
+    model = BotComment
+    template_name = 'bot/bot.html'
+    project_name = 'bot'
 
 
-class CosmicPanelView(View):
-    def get(self, response):
-        comments = CosmicComment.objects.all().order_by('-updated_at')
-        comment_form = CommentForm()
-        context = {
-            'comments': comments,
-            'comment_count': len(comments),
-            'comment_form': comment_form,
-            'comment_create_link': 'projects:cosmic_comment_create',
-            'comment_delete_link': 'projects:cosmic_comment_delete',
-            'login_redirect_link': 'projects:cosmic',
-        }
-        return render(response, 'cosmic/cosmic.html', context)
+class CosmicPanelView(CommonView):
+    model = CosmicComment
+    template_name = 'cosmic/cosmic.html'
+    project_name = 'cosmic'
 
 
-class DataProjectView(View):
-    def get(self, request):
-        comments = DataProjectComment.objects.all().order_by('-updated_at')
-        comment_form = CommentForm()
-        context = {
-            'comments': comments,
-            'comment_count': len(comments),
-            'comment_form': comment_form,
-            'comment_create_link': 'projects:data_project_comment_create',
-            'comment_delete_link': 'projects:data_project_comment_delete',
-            'login_redirect_link': 'projects:data_project',
-        }
-        return render(request, 'data_project/data_project.html', context)
+class DataProjectView(CommonView):
+    model = DataProjectComment
+    template_name = 'data_project/data_project.html'
+    project_name = 'data_project'
 
 
 class CommentCreateView(LoginRequiredMixin, View):
