@@ -40,7 +40,7 @@ class CommentCreateView(LoginRequiredMixin, View):
 
 class CommentDeleteView(OwnerDeleteView):
     model = BlogComment
-    template_name = "map/comment_delete.html"
+    template_name = "comment/comment_delete.html"
 
     def get_success_url(self):
         return reverse('blog:blog')
