@@ -39,7 +39,7 @@ const [todayMonth, todayDate, todayYear] = new Date().toLocaleDateString("en-US"
 apiDate = todayYear + '-' + todayMonth + '-' + todayDate
 
 let approachTime = []
-let = bodySize = []
+let bodySize = []
 
 var request = new XMLHttpRequest()
 const apiKey = '5bbsCyWbCHbQfeQmEEd9e3jYjVwXRh8VGAiINvNr'
