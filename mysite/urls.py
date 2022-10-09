@@ -24,7 +24,6 @@ from . import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from register import views as v
-from bot import views as bot_v
 
 
 admin.autodiscover()
@@ -33,7 +32,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path('projects/', include('projects.urls')),
     # path('map/', include('map.urls')),
-    path('bot/', include('bot.urls')),
+    # path('bot/', include('bot.urls')),
     path('panel/', include('cosmic.urls')),
     path('blog/', include('blog.urls')),
     path('admin/', admin.site.urls),

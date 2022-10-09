@@ -1,4 +1,4 @@
-{% extends "base_footer.html" %}
+{% extends "project.html" %}
 {% load humanize %}
 {% load static %}
 
@@ -20,45 +20,6 @@
             data-size="large"
             data-text="notext">
         </script>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col"></div>
-            <div class="col-md-12 col-lg-8">
-                <div class="comments">
-                    {% if user.is_authenticated %}
-                        <br clear="all"/>
-                        <p>
-                            {% load crispy_forms_tags %}
-                            <form method="post" action="{% url 'bot:bot_comment_create' %}">
-                                {% csrf_token %}
-                                {{ comment_form|crispy }}
-                                <input class="btn btn-primary" type="submit" value="Submit">
-                            </form>
-                        </p>
-                    {% else %}
-                        <h4 class="text-right"><a class="badge badge-primary" href="../accounts/login?next={% url 'bot:bot' %}">Login</a> to comment</h4>
-                    {% endif %}
-                    <div class="page-header">
-                        <h4>{{ n }} Comments</h4>
-                    </div>
-                    {% for comment in comments %}
-                        <p>
-                            <h4 class="media-heading user_name">{{ comment.owner }}</h4>
-                            <div class ="text">
-                                {{ comment.text }}
-                                {% if user == comment.owner %}
-                                <a href="{% url 'bot:bot_comment_delete' comment.id %}"><i class="fa fa-trash"></i></a>
-                                {% endif %}
-                            </div>
-                            <p class="text-right"><small>{{ comment.updated_at|naturaltime }}</small></p>
-                        </p>
-                        <hr/>
-                    {% endfor %}
-                    </div>
-                </div>
-        <div class="col"></div>
     </div>
 </div>
 {% endblock %}

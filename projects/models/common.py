@@ -1,10 +1,9 @@
 from django.db import models
 from django.core.validators import MinLengthValidator
-from django.contrib.auth.models import User
 from django.conf import settings
 
 
-class BotComment(models.Model) :
+class Comment(models.Model):
     text = models.TextField(
         validators=[MinLengthValidator(3, "Comment must be greater than 3 characters")]
     )
@@ -15,5 +14,9 @@ class BotComment(models.Model) :
 
     # Shows up in the admin list
     def __str__(self):
-        if len(self.text) < 15 : return self.text
+        if len(self.text) < 15:
+            return self.text
         return self.text[:11] + ' ...'
+
+    class Meta:
+        abstract = True
