@@ -26,9 +26,9 @@ class MapView(OwnerDetailView):
             'cases': casestoday,
             'util': util,
             'map': map,
-            'comment_create_link': 'map:map_comment_create',
-            'comment_delete_link': 'map:map_comment_delete',
-            'login_redirect_link': 'map:map',
+            'comment_create_link': 'projects:map_comment_create',
+            'comment_delete_link': 'projects:map_comment_delete',
+            'login_redirect_link': 'projects:map',
         }
         return render(request, self.template_name, context)
 
