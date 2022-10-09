@@ -47,6 +47,37 @@
 <!-- Portfolio-->
 <div id="portfolio">
     <div class="container-fluid p-0">
+        <h3 class="text-center">Projects</h3>
+        <div class="row no-gutters">
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box js-scroll-trigger" href="{% url 'projects:data_project' %}">
+                    <img class="img-fluid" src="{% static 'assets/img/portfolio/covers/4_.jpg' %}" alt=""/>
+                    <div class="portfolio-box-caption">
+                        <div class="project-category text-white-50">In Progress</div>
+                        <div class="project-name">Data Project</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box js-scroll-trigger" href="{% url 'projects:cosmic' %}">
+                    <img class="img-fluid" src="{% static 'assets/img/portfolio/covers/3_.jpg' %}" alt=""/>
+                    <div class="portfolio-box-caption">
+                        <div class="project-category text-white-50">Finished</div>
+                        <div class="project-name">Cosmic Activity Panel</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box js-scroll-trigger" href="#portfolio">
+                    <img class="img-fluid" src="{% static 'assets/img/portfolio/covers/working.gif' %}" alt=""/>
+                    <div class="portfolio-box-caption">
+                        <div class="project-category text-white-50">Coming soon</div>
+                        <div class="project-name"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <h3 class="text-center">Old Projects</h3>
         <div class="row no-gutters">
             <div class="col-lg-4 col-sm-6">
                 <a class="portfolio-box js-scroll-trigger" href="{% url 'projects:map' %}">
@@ -63,35 +94,6 @@
                     <div class="portfolio-box-caption">
                         <div class="project-category text-white-50">In progress</div>
                         <div class="project-name">Telegram Scedule Bot</div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box js-scroll-trigger" href="{% url 'projects:cosmic' %}">
-                    <img class="img-fluid" src="{% static 'assets/img/portfolio/covers/3_.jpg' %}" alt=""/>
-                    <div class="portfolio-box-caption">
-                        <div class="project-category text-white-50">Finished</div>
-                        <div class="project-name">Cosmic Activity Panel</div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="row no-gutters">
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box js-scroll-trigger" href="{% url 'projects:data_project' %}">
-                    <img class="img-fluid" src="{% static 'assets/img/portfolio/covers/4_.jpg' %}" alt=""/>
-                    <div class="portfolio-box-caption">
-                        <div class="project-category text-white-50">In Progress</div>
-                        <div class="project-name">Data Project</div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box js-scroll-trigger" href="#portfolio">
-                    <img class="img-fluid" src="{% static 'assets/img/portfolio/covers/working.gif' %}" alt=""/>
-                    <div class="portfolio-box-caption">
-                        <div class="project-category text-white-50">Coming soon</div>
-                        <div class="project-name"></div>
                     </div>
                 </a>
             </div>
