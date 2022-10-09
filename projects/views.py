@@ -4,6 +4,7 @@ from django.views import View
 from projects.owner import OwnerDeleteView
 from projects.models.bot import BotComment
 from projects.models.cosmic import CosmicComment
+from projects.models.data_project import DataProjectComment
 from projects.models.map import Population, CasesToday, Utility, Map, MapComment
 from projects.forms import CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -65,6 +66,21 @@ class CosmicPanelView(View):
         return render(response, 'cosmic/cosmic.html', context)
 
 
+class DataProjectView(View):
+    def get(self, request):
+        comments = DataProjectComment.objects.all().order_by('-updated_at')
+        comment_form = CommentForm()
+        context = {
+            'comments': comments,
+            'comment_count': len(comments),
+            'comment_form': comment_form,
+            'comment_create_link': 'projects:data_project_comment_create',
+            'comment_delete_link': 'projects:data_project_comment_delete',
+            'login_redirect_link': 'projects:data_project',
+        }
+        return render(request, 'data_project/data_project.html', context)
+
+
 class CommentCreateView(LoginRequiredMixin, View):
     model = None
     redirect_url = None
@@ -103,6 +119,11 @@ class CosmicCommentMixin:
     redirect_url = 'projects:cosmic'
 
 
+class DataProjectCommentMixin:
+    model = DataProjectComment
+    redirect_url = 'projects:data_project'
+
+
 class MapCommentCreateView(MapCommentMixin, CommentCreateView):
     pass
 
@@ -125,3 +146,12 @@ class CosmicCommentCreateView(CosmicCommentMixin, CommentCreateView):
 
 class CosmicCommentDeleteView(CosmicCommentMixin, CommentDeleteView):
     pass
+
+
+class DataProjectCommentCreateView(DataProjectCommentMixin, CommentCreateView):
+    pass
+
+
+class DataProjectCommentDeleteView(DataProjectCommentMixin, CommentDeleteView):
+    pass
+

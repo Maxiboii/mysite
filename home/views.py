@@ -12,9 +12,3 @@ class HomeView(View):
             'islocal': islocal
         }
         return render(request, 'home/index.html', context)
-
-
-class DataProjectView(View):
-    def get(self, request):
-        context = {}
-        return render(request, 'home/data_project.html', context)

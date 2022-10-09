@@ -14,4 +14,8 @@ urlpatterns = [
     path('cosmic', views.CosmicPanelView.as_view(), name='cosmic'),
     path('cosmic/comment', views.CosmicCommentCreateView.as_view(), name='cosmic_comment_create'),
     path('cosmic/comment/<int:pk>/delete', views.CosmicCommentDeleteView.as_view(), name='cosmic_comment_delete'),
+
+    path('data_project', views.DataProjectView.as_view(), name="data_project"),
+    path('data_project/comment', views.DataProjectCommentCreateView.as_view(), name='data_project_comment_create'),
+    path('data_project/comment/<int:pk>/delete', views.DataProjectCommentDeleteView.as_view(), name='data_project_comment_delete'),
 ]
