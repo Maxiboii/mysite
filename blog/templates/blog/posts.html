@@ -9,10 +9,12 @@
     <div class="container">
         <ul>
             {% for post in posts %}
+                {% if post.posted %}
                 <li>
                     <a href="/blog/post/{{ post.id }}"><h6>{{ post.title }} </h6></a><i>{{ post.author }}</i>
                     <p>{{ post.overview }}</p>
                 </li>
+                {% endif %}
             {% endfor %}
         </ul>
     </div>
