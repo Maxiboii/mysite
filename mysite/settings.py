@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'projects.apps.ProjectsConfig',
     # 'map.apps.MapConfig',
     # 'bot.apps.BotConfig',
-    'cosmic.apps.CosmicConfig',
+    # 'cosmic.apps.CosmicConfig',
     'blog.apps.BlogConfig',
 ]
 

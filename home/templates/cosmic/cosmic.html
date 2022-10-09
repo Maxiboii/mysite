@@ -1,0 +1,29 @@
+{% extends "project.html" %}
+{% load humanize %}
+{% load static %}
+
+{% block title %} Activity Panel {% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/panel.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;900&family=Roboto&display=swap" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div class="main">
+    <h1>Cosmic Activity Panel</h1>
+    <h2>Bodies around Earth at this moment</h2>
+    <h3><span id="date"></span></h3>
+
+    <table id="content">
+        <tr>
+            <th>Name</th>
+            <th>Diameter, m</th>
+            <th>Potentially dangerous</th>
+            <th>Close approach in</th>
+            <th>Appearance</th>
+            <th></th>
+        </tr>
+    </table>
+</div>
+<p id="bottom-text"><small>Data from NASA Neo API</small></p>
+<script src="{% static 'js/app.js' %}"></script>
+{% endblock %}

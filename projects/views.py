@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.views import View
 from projects.owner import OwnerDeleteView
 from projects.models.bot import BotComment
+from projects.models.cosmic import CosmicComment
 from projects.models.map import Population, CasesToday, Utility, Map, MapComment
 from projects.forms import CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -49,6 +50,21 @@ class BotView(View):
         return render(response, 'bot/bot.html', context)
 
 
+class CosmicPanelView(View):
+    def get(self, response):
+        comments = CosmicComment.objects.all().order_by('-updated_at')
+        comment_form = CommentForm()
+        context = {
+            'comments': comments,
+            'comment_count': len(comments),
+            'comment_form': comment_form,
+            'comment_create_link': 'projects:cosmic_comment_create',
+            'comment_delete_link': 'projects:cosmic_comment_delete',
+            'login_redirect_link': 'projects:cosmic',
+        }
+        return render(response, 'cosmic/cosmic.html', context)
+
+
 class CommentCreateView(LoginRequiredMixin, View):
     model = None
     redirect_url = None
@@ -82,6 +98,11 @@ class BotCommentMixin:
     redirect_url = 'projects:bot'
 
 
+class CosmicCommentMixin:
+    model = CosmicComment
+    redirect_url = 'projects:cosmic'
+
+
 class MapCommentCreateView(MapCommentMixin, CommentCreateView):
     pass
 
@@ -95,4 +116,12 @@ class BotCommentCreateView(BotCommentMixin, CommentCreateView):
 
 
 class BotCommentDeleteView(BotCommentMixin, CommentDeleteView):
+    pass
+
+
+class CosmicCommentCreateView(CosmicCommentMixin, CommentCreateView):
+    pass
+
+
+class CosmicCommentDeleteView(CosmicCommentMixin, CommentDeleteView):
     pass

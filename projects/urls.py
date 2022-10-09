@@ -10,4 +10,8 @@ urlpatterns = [
     path('bot', views.BotView.as_view(), name='bot'),
     path('bot/comment', views.BotCommentCreateView.as_view(), name='bot_comment_create'),
     path('bot/comment/<int:pk>/delete', views.BotCommentDeleteView.as_view(), name='bot_comment_delete'),
+
+    path('cosmic', views.CosmicPanelView.as_view(), name='cosmic'),
+    path('cosmic/comment', views.CosmicCommentCreateView.as_view(), name='cosmic_comment_create'),
+    path('cosmic/comment/<int:pk>/delete', views.CosmicCommentDeleteView.as_view(), name='cosmic_comment_delete'),
 ]

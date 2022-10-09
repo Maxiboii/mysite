@@ -33,7 +33,7 @@ urlpatterns = [
     path('projects/', include('projects.urls')),
     # path('map/', include('map.urls')),
     # path('bot/', include('bot.urls')),
-    path('panel/', include('cosmic.urls')),
+    # path('panel/', include('cosmic.urls')),
     path('blog/', include('blog.urls')),
     path('admin/', admin.site.urls),
     path('register/', v.register, name="register"),
