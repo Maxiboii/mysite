@@ -26,7 +26,7 @@ class Utility(models.Model):
     value = models.CharField(max_length=20)
 
 
-class MapComment(models.Model) :
+class MapComment(models.Model):
     text = models.TextField(
         validators=[MinLengthValidator(3, "Comment must be greater than 3 characters")]
     )
@@ -37,5 +37,5 @@ class MapComment(models.Model) :
 
     # Shows up in the admin list
     def __str__(self):
-        if len(self.text) < 15 : return self.text
+        if len(self.text) < 15: return self.text
         return self.text[:11] + ' ...'

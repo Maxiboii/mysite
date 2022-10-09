@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.views import View
 from cosmic.owner import OwnerDetailView, OwnerDeleteView
 from cosmic.models import PanelComment
-from map.forms import CommentForm
+from projects.forms import CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 

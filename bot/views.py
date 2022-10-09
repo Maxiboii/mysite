@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.views import View
 from bot.owner import OwnerDetailView, OwnerDeleteView
 from bot.models import BotComment
-from map.forms import CommentForm
+from projects.forms import CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 

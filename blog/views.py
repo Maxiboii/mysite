@@ -5,7 +5,7 @@ from django.views import View
 from blog.owner import OwnerDeleteView
 
 from .models import Post, BlogComment
-from map.forms import CommentForm
+from projects.forms import CommentForm
 
 
 class PostsView(View):

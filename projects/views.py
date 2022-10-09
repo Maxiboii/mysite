@@ -2,15 +2,16 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 from bot.owner import OwnerDetailView, OwnerDeleteView
-from map.models import Population, CasesToday, Utility, Map, MapComment
-from map.forms import CommentForm
+from projects.models.map import Population, CasesToday, Utility, Map, MapComment
+from projects.forms import CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class MapView(OwnerDetailView):
     model = Map
     template_name = "map/map.html"
-    def get(self, request):
+
+    def get(self, request, *args, **kwargs):
         comments = MapComment.objects.all().order_by('-updated_at')
         comment_form = CommentForm()
         population = Population.objects.all()
@@ -18,25 +19,28 @@ class MapView(OwnerDetailView):
         util = Utility.objects.all()
         map = Map.objects.all()
         context = {
-        'comments': comments,
-        'n': len(comments),
-        'comment_form': comment_form,
-        'population': population,
-        'cases': casestoday,
-        'util': util,
-        'map': map
+            'comments': comments,
+            'comment_count': len(comments),
+            'comment_form': comment_form,
+            'population': population,
+            'cases': casestoday,
+            'util': util,
+            'map': map,
+            'comment_create_link': 'map:map_comment_create',
+            'comment_delete_link': 'map:map_comment_delete',
+            'login_redirect_link': 'map:map',
         }
         return render(request, self.template_name, context)
 
 
-class CommentCreateView(LoginRequiredMixin, View):
+class MapCommentCreateView(LoginRequiredMixin, View):
     def post(self, request) :
         comment = MapComment(text=request.POST['comment'], owner=request.user)
         comment.save()
         return redirect(reverse('map:map'))
 
 
-class CommentDeleteView(OwnerDeleteView):
+class MapCommentDeleteView(OwnerDeleteView):
     model = MapComment
     template_name = "map/comment_delete.html"
 

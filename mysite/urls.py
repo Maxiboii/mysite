@@ -31,7 +31,8 @@ admin.autodiscover()
 
 urlpatterns = [
     path('', include('home.urls')),
-    path('map/', include('map.urls')),
+    path('projects/', include('projects.urls')),
+    # path('map/', include('map.urls')),
     path('bot/', include('bot.urls')),
     path('panel/', include('cosmic.urls')),
     path('blog/', include('blog.urls')),
