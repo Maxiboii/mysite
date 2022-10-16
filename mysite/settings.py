@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'rest_framework',
     'home.apps.HomeConfig',
-    'register.apps.RegisterConfig',
     'projects.apps.ProjectsConfig',
     'blog.apps.BlogConfig',
 ]
