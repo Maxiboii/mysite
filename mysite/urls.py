@@ -35,7 +35,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', v.register, name="register"),
     path('accounts/', include('django.contrib.auth.urls')),
-    # url(r'^oauth/', include('social_django.urls', namespace='social')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
