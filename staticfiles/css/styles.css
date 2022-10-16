@@ -10165,6 +10165,10 @@ header.masthead h1 {
   color: rgba(255, 255, 255, 0.75);
 }
 
+.text-white-80 {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 #dropdown-divider-name {
   padding-left: 20px;
   color: rgb(112, 109, 107);
