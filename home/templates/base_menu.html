@@ -19,13 +19,15 @@
               Projects
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{% url 'projects:map' %}">Map</a>
+                <a class="dropdown-item" href="{% url 'projects:data_project' %}">Data Project</a>
                 <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{% url 'projects:bot' %}">Bot</a>
+                <a class="dropdown-item" href="{% url 'projects:cosmic' %}">Cosmic Activity Panel</a>
                 <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{% url 'projects:cosmic' %}">Cosmic Activity Panel</a>
+                <h5 id="dropdown-divider-name">Old Projects</h5>
                 <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{% url 'projects:data_project' %}">Data Project</a>
+                <a class="dropdown-item" href="{% url 'projects:map' %}">Map</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'projects:bot' %}">Bot</a>
             </div>
         </li>
     </ul>
